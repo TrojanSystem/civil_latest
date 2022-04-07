@@ -218,7 +218,7 @@ class _MixRatioState extends State<MixRatio> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(left: 25.0, bottom: 8, top: 8),
                   child: Text(
                     'No of bags ${mixRatio.data[2]}',
                     style: const TextStyle(
@@ -228,7 +228,7 @@ class _MixRatioState extends State<MixRatio> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(left: 25.0, bottom: 8, top: 8),
                   child: Text(
                     'Sand in cu.m ${mixRatio.data[3]}',
                     style: const TextStyle(
@@ -238,7 +238,7 @@ class _MixRatioState extends State<MixRatio> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(left: 25.0, bottom: 8, top: 8),
                   child: Text(
                     'Aggregate in cu.m ${mixRatio.data[4]}',
                     style: const TextStyle(
@@ -248,7 +248,7 @@ class _MixRatioState extends State<MixRatio> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(left: 25.0, bottom: 8, top: 8),
                   child: Text(
                     'Water in liter ${mixRatio.data[5]}',
                     style: const TextStyle(
