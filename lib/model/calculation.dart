@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 class Calculation extends ChangeNotifier {
@@ -67,14 +65,14 @@ class Calculation extends ChangeNotifier {
 
   String weightOfSand() {
     double volume = (sand * 1.57) / dry();
-    double weightSand = volume * 35.32;
+    double weightSand = volume * 1;
 
     return weightSand.toStringAsFixed(2);
   }
 
   String weightOfAggregate() {
     double volume = (aggregate * 1.57) / dry();
-    double weightAggregate = volume * 35.32;
+    double weightAggregate = volume * 1;
 
     return weightAggregate.toStringAsFixed(2);
   }
@@ -83,5 +81,4 @@ class Calculation extends ChangeNotifier {
     double litre = weight * water;
     return litre.toStringAsFixed(2);
   }
-
 }

@@ -1,4 +1,3 @@
-
 import 'package:example/model/calculation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -231,7 +230,7 @@ class _MixRatioState extends State<MixRatio> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'Sand in cft ${mixRatio.data[3]}',
+                    'Sand in cu.m ${mixRatio.data[3]}',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 30,
@@ -241,7 +240,7 @@ class _MixRatioState extends State<MixRatio> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'Aggregate in cft ${mixRatio.data[4]}',
+                    'Aggregate in cu.m ${mixRatio.data[4]}',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 30,
