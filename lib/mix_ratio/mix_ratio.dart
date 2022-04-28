@@ -2,6 +2,8 @@ import 'package:example/model/calculation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../constants.dart';
+
 class MixRatio extends StatefulWidget {
   static const routeName = '/mixratio';
 
@@ -22,9 +24,9 @@ class _MixRatioState extends State<MixRatio> {
   Widget build(BuildContext context) {
     final mixRatio = Provider.of<Calculation>(context, listen: false);
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(106, 27, 154, 1),
+      backgroundColor: const Color.fromRGBO(3, 83, 151, 1),
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(106, 27, 154, 1),
+        backgroundColor: const Color.fromRGBO(3, 83, 151, 1),
         elevation: 0,
         centerTitle: true,
         title: const Text('Mix Ratio'),
@@ -35,7 +37,7 @@ class _MixRatioState extends State<MixRatio> {
             Form(
               key: formKey,
               child: Container(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.fromLTRB(15, 20, 15, 20),
                 margin: const EdgeInsets.all(25),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(25),
@@ -46,10 +48,7 @@ class _MixRatioState extends State<MixRatio> {
                   children: [
                     const Text(
                       'Mix-Ratio (C:S:A:W/C)',
-                      style: TextStyle(
-                          fontSize: 25,
-                          letterSpacing: 2,
-                          fontWeight: FontWeight.w900),
+                      style: kkMixRatioTitle,
                     ),
                     const SizedBox(
                       height: 20,
@@ -78,7 +77,7 @@ class _MixRatioState extends State<MixRatio> {
                             },
                             keyboardType: TextInputType.number,
                           ),
-                          width: 60,
+                          width: 50,
                         ),
                         const SizedBox(
                           width: 15,
@@ -112,7 +111,7 @@ class _MixRatioState extends State<MixRatio> {
                               });
                             },
                           ),
-                          width: 60,
+                          width: 50,
                         ),
                         const SizedBox(
                           width: 15,
@@ -146,7 +145,7 @@ class _MixRatioState extends State<MixRatio> {
                               });
                             },
                           ),
-                          width: 60,
+                          width: 50,
                         ),
                         const SizedBox(
                           width: 15,
@@ -190,6 +189,7 @@ class _MixRatioState extends State<MixRatio> {
                     RaisedButton(
                       onPressed: () {
                         if (formKey.currentState.validate()) {
+                          formKey.currentState.save();
                           setState(() {
                             mixRatio.cement = double.parse(cement);
                             mixRatio.sand = double.parse(sand);

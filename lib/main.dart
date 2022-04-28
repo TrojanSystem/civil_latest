@@ -1,17 +1,17 @@
-import 'package:example/home_screen.dart';
-import 'package:example/model/calculation.dart';
-import 'package:example/shop_list/files.dart';
-import 'package:example/shop_list/shop_list.dart';
-import 'package:example/shop_list/shop_model.dart';
-import 'package:example/todo_list/files.dart';
-import 'package:example/todo_list/todo_list.dart';
-import 'package:example/todo_list/todo_model.dart';
+import 'package:example/main_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'attendance/attendanceList.dart';
-import 'attendance/file.dart';
-import 'bar_calculation/bar_converter.dart';
-import 'mix_ratio/mix_ratio.dart';
+
+import 'daily_todos/shop_list/files.dart';
+import 'daily_todos/shop_list/shop_model.dart';
+import 'daily_todos/todo_list/files.dart';
+import 'daily_todos/todo_list/todo_model.dart';
+import 'first_thing/attendance/file.dart';
+import 'first_thing/store/add_to_store/shop_model_data_for_store.dart';
+import 'first_thing/store/add_to_store/storage_pdf_report.dart';
+import 'first_thing/store/substract_from_store/shop_model_data_for_used_items.dart';
+import 'first_thing/store/substract_from_store/storage_pdf_report_for_used_item.dart';
+import 'model/calculation.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +28,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-   // DatabaseHelper.instance.getLabour();
+    // DatabaseHelper.instance.getLabour();
     super.initState();
   }
 
@@ -41,13 +41,25 @@ class _MyAppState extends State<MyApp> {
           create: (ctx) => Calculation(),
         ),
         ChangeNotifierProvider(
+          create: (ctx) => ShopModelDataForStore()..loadShopList(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => FileHandlerForStorageForUsedItems(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => FileHandlerForStorage(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => UsedShopModelData()..loadShopList(),
+        ),
+        ChangeNotifierProvider(
           create: (ctx) => Shop(),
         ),
         ChangeNotifierProvider(
           create: (ctx) => ShopHandler(),
         ),
         ChangeNotifierProvider(
-          create: (ctx) => FileHandler(),
+          create: (ctx) => FileHandlerForAttendance(),
         ),
         ChangeNotifierProvider(
           create: (ctx) => TodoHandler(),
@@ -56,18 +68,11 @@ class _MyAppState extends State<MyApp> {
           create: (ctx) => TodoModel(),
         ),
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: const Scaffold(
-          body: HomeScreen(),
+        home: Scaffold(
+          body: MyCustomSplashScreen(),
         ),
-        routes: {
-          AttendanceList.routeName: (ctx) => const AttendanceList(),
-          TodoList.routeName: (ctx) => const TodoList(),
-          ShopList.routeName: (ctx) => const ShopList(),
-          MixRatio.routeName: (ctx) => MixRatio(),
-          Bar.routeName: (ctx) => Bar(),
-        },
       ),
     );
   }

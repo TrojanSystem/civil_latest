@@ -40,11 +40,15 @@ dependencies:
   intl: ^0.17.0
   path_provider: ^2.0.8
   open_file: ^3.2.1
-  faker: ^2.0.0
+  curved_navigation_bar: ^1.0.2
+  fab_circular_menu: ^1.0.2
+  flutter_staggered_animations: "^1.0.0"
   flutter_slidable: ^1.2.0
   url_launcher: ^6.0.18
   sqlbrite: ^2.2.0
   sqflite: any
+  font_awesome_flutter:
+  convex_bottom_bar: ^3.0.0
 
 
 
@@ -88,6 +92,14 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+
+  fonts:
+    - family: FjallaOne
+      fonts:
+        - asset: fonts/FjallaOne-Regular.ttf
+    - family: SecularOne
+      fonts:
+        - asset: fonts/SecularOne-Regular.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:
