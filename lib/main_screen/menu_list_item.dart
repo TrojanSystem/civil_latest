@@ -47,7 +47,7 @@ class _MyCustomWidgetState extends State<MyCustomWidget> {
       CategoryItem(
         color: Colors.teal,
         title: 'Volume & Area',
-        image: 'images/3.png',
+        image: 'images/sphere.jpg',
         navigate: () {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -59,7 +59,7 @@ class _MyCustomWidgetState extends State<MyCustomWidget> {
       CategoryItem(
         color: Colors.lightBlue,
         title: 'First Thing',
-        image: 'images/4.png',
+        image: 'images/3.png',
         navigate: () {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -71,7 +71,7 @@ class _MyCustomWidgetState extends State<MyCustomWidget> {
       CategoryItem(
         color: Colors.grey,
         title: 'Daily Todos',
-        image: 'images/5.png',
+        image: 'images/4.png',
         navigate: () {
           Navigator.of(context).push(
             MaterialPageRoute(

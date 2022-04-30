@@ -113,10 +113,10 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
                       borderRadius: BorderRadius.circular(30),
                     ),
                     // child: Image.asset('assets/images/file_name.png')
-                    child:  ClipRRect(
+                    child: ClipRRect(
                       borderRadius: BorderRadius.circular(30),
                       clipBehavior: Clip.antiAlias,
-                      child:const Image(
+                      child: const Image(
                         image: AssetImage('images/logo.png'),
                       ),
                     ),
@@ -128,6 +128,16 @@ class _MyCustomSplashScreenState extends State<MyCustomSplashScreen>
                     padding: EdgeInsets.only(left: 8.0),
                     child: Text(
                       'We Solve Problems Technology Creates',
+                      style: sloganStyle,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      'version: 1.0.0+1',
                       style: sloganStyle,
                     ),
                   ),

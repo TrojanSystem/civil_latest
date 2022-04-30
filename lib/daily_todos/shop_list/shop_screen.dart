@@ -142,6 +142,20 @@ class _ShopListState extends State<ShopList> {
       floatingActionButton: Builder(
         builder: (context) => DropDownMenuButtonForDailyTodos(
           primaryColor: const Color.fromRGBO(3, 83, 151, 1),
+          iconsOne: const Icon(
+            Icons.add,
+            color: Colors.white,
+            size: 35,
+          ),
+          iconsTwo: const Image(
+            image: AssetImage('images/pdf.png'),
+            width: 40,
+          ),
+          iconsThree: const Image(
+            image: AssetImage('images/check-list.png'),
+            width: 50,
+          ),
+          iconsFour: const Icon(Icons.arrow_back_ios),
           button_11: () {
             showModalBottomSheet(
               context: context,
@@ -162,7 +176,7 @@ class _ShopListState extends State<ShopList> {
             );
           },
           button_44: () {
-            print('x');
+            Navigator.of(context).pop();
           },
         ),
       ),

@@ -64,10 +64,26 @@ class _StorageScreenState extends State<StorageScreen> {
             bottom: const TabBar(
               tabs: [
                 Tab(
-                  child: Icon(Icons.home),
+                  child: Text(
+                    'Store-In',
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontFamily: 'FjallaOne',
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
                 ),
                 Tab(
-                  child: Icon(Icons.add),
+                  child: Text(
+                    'Store-Out',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontFamily: 'FjallaOne',
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -154,6 +170,23 @@ class _StorageScreenState extends State<StorageScreen> {
           floatingActionButton: Builder(
             builder: (context) => DropDownMenuButton(
               primaryColor: const Color.fromRGBO(3, 83, 151, 1),
+              iconsOne: const Icon(
+                Icons.add,
+                color: Colors.white,
+                size: 35,
+              ),
+              iconsTwo: const Image(
+                image: AssetImage('images/pdf.png'),
+                width: 40,
+              ),
+              iconsThree: const Image(
+                image: AssetImage('images/check-list.png'),
+                width: 50,
+              ),
+              iconsFour: const Image(
+                image: AssetImage('images/minus.png'),
+                width: 50,
+              ),
               button_1: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(

@@ -5,6 +5,7 @@ import 'package:example/daily_todos/shop_list/shop_model.dart';
 import 'package:example/daily_todos/todo_list/files.dart';
 import 'package:example/daily_todos/todo_list/todo_model.dart';
 import 'package:example/model/calculation.dart';
+import 'package:example/volume_and_area/calculator_class.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -78,6 +79,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         ChangeNotifierProvider(
           create: (ctx) => FileHandlerForAttendance(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => CalculatorClass(),
         ),
         ChangeNotifierProvider(
           create: (ctx) => DailyAttendanceData()..loadDailyAttendanceList(),

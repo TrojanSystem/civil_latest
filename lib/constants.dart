@@ -15,7 +15,7 @@ const kkMixRatioTitle = TextStyle(
     fontWeight: FontWeight.w900);
 const storageTitle = TextStyle(
   fontFamily: 'FjallaOne',
-  fontSize: 30,
+  fontSize: 22,
   fontWeight: FontWeight.w900,
 );
 const storageItemName = TextStyle(

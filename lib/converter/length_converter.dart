@@ -22,6 +22,7 @@ class _LengthConverterState extends State<LengthConverter> {
   Widget build(BuildContext context) {
     final selectedLengthType =
         Provider.of<ConverterDataCalculation>(context).length;
+    final data = Provider.of<ConverterDataCalculation>(context);
 
     return Column(
       children: [
@@ -44,6 +45,7 @@ class _LengthConverterState extends State<LengthConverter> {
                         ),
                       ),
                       child: TextFormField(
+                        initialValue: '0',
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Value can\'t be empty';
@@ -118,7 +120,49 @@ class _LengthConverterState extends State<LengthConverter> {
                       child: Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: Text(
-                          convertItem.toString(),
+                          selectedLengthFromList == 0
+                              ? (data.um[index] * convertItem).toString()
+                              : selectedLengthFromList == 1
+                                  ? (data.mm[index] * convertItem).toString()
+                                  : selectedLengthFromList == 2
+                                      ? (data.cm[index] * convertItem)
+                                          .toString()
+                                      : selectedLengthFromList == 3
+                                          ? (data.dm[index] * convertItem)
+                                              .toString()
+                                          : selectedLengthFromList == 4
+                                              ? (data.m[index] * convertItem)
+                                                  .toString()
+                                              : selectedLengthFromList == 5
+                                                  ? (data.inch[index] *
+                                                          convertItem)
+                                                      .toString()
+                                                  : selectedLengthFromList == 6
+                                                      ? (data.ft[index] *
+                                                              convertItem)
+                                                          .toString()
+                                                      : selectedLengthFromList ==
+                                                              7
+                                                          ? (data.ftin[index] *
+                                                                  convertItem)
+                                                              .toString()
+                                                          : selectedLengthFromList ==
+                                                                  8
+                                                              ? (data.yd[index] *
+                                                                      convertItem)
+                                                                  .toString()
+                                                              : selectedLengthFromList ==
+                                                                      9
+                                                                  ? (data.mile[
+                                                                              index] *
+                                                                          convertItem)
+                                                                      .toString()
+                                                                  : selectedLengthFromList ==
+                                                                          10
+                                                                      ? (data.km[index] *
+                                                                              convertItem)
+                                                                          .toString()
+                                                                      : '',
                           style: const TextStyle(
                             fontSize: 17,
                           ),

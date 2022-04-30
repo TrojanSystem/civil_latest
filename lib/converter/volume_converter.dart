@@ -4,14 +4,14 @@ import 'package:provider/provider.dart';
 import '../constants.dart';
 import 'converter_data_calculation.dart';
 
-class AreaConverter extends StatefulWidget {
-  AreaConverter({Key key}) : super(key: key);
+class VolumeConverter extends StatefulWidget {
+  VolumeConverter({Key key}) : super(key: key);
 
   @override
-  State<AreaConverter> createState() => _AreaConverterState();
+  State<VolumeConverter> createState() => _VolumeConverterState();
 }
 
-class _AreaConverterState extends State<AreaConverter> {
+class _VolumeConverterState extends State<VolumeConverter> {
   double convertItem = 0.0;
 
   int selectedLengthFromList = 0;
@@ -21,7 +21,7 @@ class _AreaConverterState extends State<AreaConverter> {
   @override
   Widget build(BuildContext context) {
     final selectedLengthType =
-        Provider.of<ConverterDataCalculation>(context).area;
+        Provider.of<ConverterDataCalculation>(context).volume;
     final data = Provider.of<ConverterDataCalculation>(context);
 
     return Column(
@@ -121,49 +121,51 @@ class _AreaConverterState extends State<AreaConverter> {
                         padding: const EdgeInsets.only(right: 8.0),
                         child: Text(
                           selectedLengthFromList == 0
-                              ? (data.mmA[index] * convertItem).toString()
+                              ? (data.mlV[index] * convertItem).toString()
                               : selectedLengthFromList == 1
-                                  ? (data.cmA[index] * convertItem).toString()
+                                  ? (data.clV[index] * convertItem).toString()
                                   : selectedLengthFromList == 2
-                                      ? (data.dmA[index] * convertItem)
+                                      ? (data.dlV[index] * convertItem)
                                           .toString()
                                       : selectedLengthFromList == 3
-                                          ? (data.mA[index] * convertItem)
+                                          ? (data.L[index] * convertItem)
                                               .toString()
                                           : selectedLengthFromList == 4
-                                              ? (data.inchA[index] *
-                                                      convertItem)
+                                              ? (data.mmV[index] * convertItem)
                                                   .toString()
                                               : selectedLengthFromList == 5
-                                                  ? (data.ftA[index] *
+                                                  ? (data.cmV[index] *
                                                           convertItem)
                                                       .toString()
                                                   : selectedLengthFromList == 6
-                                                      ? (data.ydA[index] *
+                                                      ? (data.dmV[index] *
                                                               convertItem)
                                                           .toString()
                                                       : selectedLengthFromList ==
                                                               7
-                                                          ? (data.haA[index] *
+                                                          ? (data.mV[index] *
                                                                   convertItem)
                                                               .toString()
                                                           : selectedLengthFromList ==
                                                                   8
-                                                              ? (data.mileA[
-                                                                          index] *
+                                                              ? (data.inV[index] *
                                                                       convertItem)
                                                                   .toString()
                                                               : selectedLengthFromList ==
                                                                       9
-                                                                  ? (data.kmA[index] *
+                                                                  ? (data.ftV[index] *
                                                                           convertItem)
                                                                       .toString()
                                                                   : selectedLengthFromList ==
                                                                           10
-                                                                      ? (data.acreA[index] *
+                                                                      ? (data.ydA[index] *
                                                                               convertItem)
                                                                           .toString()
-                                                                      : '',
+                                                                      : selectedLengthFromList ==
+                                                                              11
+                                                                          ? (data.gal[index] * convertItem)
+                                                                              .toString()
+                                                                          : '',
                           style: const TextStyle(
                             fontSize: 17,
                           ),

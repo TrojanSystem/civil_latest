@@ -7,10 +7,18 @@ class DropDownMenuButton extends StatelessWidget {
   final Function button_2;
   final Function button_3;
   final Function button_4;
+  final Widget iconsOne;
+  final Widget iconsTwo;
+  final Widget iconsThree;
+  final Widget iconsFour;
   final Color primaryColor;
 
   DropDownMenuButton(
       {this.button_1,
+      this.iconsFour,
+      this.iconsThree,
+      this.iconsOne,
+      this.iconsTwo,
       this.button_2,
       this.button_3,
       this.button_4,
@@ -50,11 +58,7 @@ class DropDownMenuButton extends StatelessWidget {
             },
             shape: const CircleBorder(),
             //padding: const EdgeInsets.fromLTRB(24.0, 100, 24, 24),
-            child: const Icon(
-              Icons.add,
-              color: Colors.white,
-              size: 35,
-            ),
+            child: iconsOne,
           ),
         ),
         RawMaterialButton(
@@ -65,10 +69,7 @@ class DropDownMenuButton extends StatelessWidget {
           shape: const CircleBorder(),
           //  padding: const EdgeInsets.fromLTRB(24.0, 50, 24, 24),
           padding: const EdgeInsets.all(24.0),
-          child: const Image(
-            image: AssetImage('images/pdf.png'),
-            width: 40,
-          ),
+          child: iconsTwo,
         ),
         RawMaterialButton(
           onPressed: () {
@@ -77,10 +78,7 @@ class DropDownMenuButton extends StatelessWidget {
           },
           shape: const CircleBorder(),
           //padding: const EdgeInsets.all(24.0),
-          child: const Image(
-            image: AssetImage('images/check-list.png'),
-            width: 50,
-          ),
+          child: iconsThree,
         ),
         RawMaterialButton(
           onPressed: () {
@@ -89,11 +87,7 @@ class DropDownMenuButton extends StatelessWidget {
           },
           shape: const CircleBorder(),
           padding: const EdgeInsets.all(24.0),
-          child: const Icon(
-            Icons.arrow_right_alt_outlined,
-            color: Colors.white,
-            size: 35,
-          ),
+          child: iconsFour,
         )
       ],
     );

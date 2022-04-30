@@ -121,210 +121,242 @@ class _AttendanceListState extends State<AttendanceList> {
           ),
         ],
       ),
-      body: AnimationLimiter(
-        child: ListView.builder(
-          padding: EdgeInsets.all(_w / 30),
-          physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics()),
-          itemCount: dailyAttendanceList.length,
-          itemBuilder: (BuildContext context, int index) {
-            return AnimationConfiguration.staggeredList(
-              position: index,
-              delay: const Duration(milliseconds: 100),
-              child: SlideAnimation(
-                duration: const Duration(milliseconds: 2500),
-                curve: Curves.fastLinearToSlowEaseIn,
-                horizontalOffset: -300,
-                verticalOffset: -850,
-                child: Slidable(
-                  endActionPane: ActionPane(
-                    motion: const ScrollMotion(),
-                    children: [
-                      const SizedBox(
-                        width: 50,
-                      ),
-                      IconButton(
-                        color: Colors.green,
-                        onPressed: () => showModalBottomSheet(
-                          context: context,
-                          builder: (_) => AttendanceUpdateForm(
-                            existedDate:
-                                DateTime.parse(dailyAttendanceList[index].date),
-                            existedTitle: dailyAttendanceList[index].title,
-                            existedName: dailyAttendanceList[index].name,
-                            existedPhoneNumber:
-                                dailyAttendanceList[index].phoneNumber,
-                            existedPrice: dailyAttendanceList[index].price,
-                            id: dailyAttendanceList[index].id,
-                          ),
-                        ),
-                        icon: const Icon(
-                          Icons.edit,
-                          size: 40,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      IconButton(
-                        color: Colors.red,
-                        onPressed: () => showDialog(
-                          context: context,
-                          builder: (ctx) => AlertDialog(
-                            title: const Text('Are you sure'),
-                            actions: [
-                              FlatButton(
-                                onPressed: () {
-                                  Navigator.of(ctx).pop(false);
-                                },
-                                child: const Text('No'),
+      body: dailyAttendanceList.isNotEmpty
+          ? AnimationLimiter(
+              child: ListView.builder(
+                padding: EdgeInsets.all(_w / 30),
+                physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics()),
+                itemCount: dailyAttendanceList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return AnimationConfiguration.staggeredList(
+                    position: index,
+                    delay: const Duration(milliseconds: 100),
+                    child: SlideAnimation(
+                      duration: const Duration(milliseconds: 2500),
+                      curve: Curves.fastLinearToSlowEaseIn,
+                      horizontalOffset: -300,
+                      verticalOffset: -850,
+                      child: Slidable(
+                        endActionPane: ActionPane(
+                          motion: const ScrollMotion(),
+                          children: [
+                            const SizedBox(
+                              width: 50,
+                            ),
+                            IconButton(
+                              color: Colors.green,
+                              onPressed: () => showModalBottomSheet(
+                                context: context,
+                                builder: (_) => AttendanceUpdateForm(
+                                  existedDate: DateTime.parse(
+                                      dailyAttendanceList[index].date),
+                                  existedTitle:
+                                      dailyAttendanceList[index].title,
+                                  existedName: dailyAttendanceList[index].name,
+                                  existedPhoneNumber:
+                                      dailyAttendanceList[index].phoneNumber,
+                                  existedPrice:
+                                      dailyAttendanceList[index].price,
+                                  id: dailyAttendanceList[index].id,
+                                ),
                               ),
-                              FlatButton(
-                                onPressed: () {
-                                  Provider.of<DailyAttendanceData>(context)
-                                      .deleteDailyAttendanceList(
-                                          dailyAttendanceList[index].id);
-                                  Navigator.of(ctx).pop(true);
-                                },
-                                child: const Text('Yes'),
+                              icon: const Icon(
+                                Icons.edit,
+                                size: 40,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            IconButton(
+                              color: Colors.red,
+                              onPressed: () => showDialog(
+                                context: context,
+                                builder: (ctx) => AlertDialog(
+                                  title: const Text('Are you sure'),
+                                  actions: [
+                                    FlatButton(
+                                      onPressed: () {
+                                        Navigator.of(ctx).pop(false);
+                                      },
+                                      child: const Text('No'),
+                                    ),
+                                    FlatButton(
+                                      onPressed: () {
+                                        Provider.of<DailyAttendanceData>(
+                                                context)
+                                            .deleteDailyAttendanceList(
+                                                dailyAttendanceList[index].id);
+                                        Navigator.of(ctx).pop(true);
+                                      },
+                                      child: const Text('Yes'),
+                                    ),
+                                  ],
+                                  content: const Text(
+                                      'Do you want to remove the Labour from the List?'),
+                                ),
+                              ),
+                              icon: const Icon(
+                                Icons.delete_forever,
+                                size: 40,
+                              ),
+                            ),
+                          ],
+                        ),
+                        startActionPane: ActionPane(
+                          motion: const ScrollMotion(),
+                          children: [
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            IconButton(
+                              color: Colors.green,
+                              onPressed: () => _callContact(context,
+                                  dailyAttendanceList[index].phoneNumber),
+                              icon: const Icon(
+                                Icons.call,
+                                size: 40,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 30,
+                            ),
+                            IconButton(
+                              color: Colors.blue,
+                              onPressed: () => _smsContact(context,
+                                  dailyAttendanceList[index].phoneNumber),
+                              icon: const Icon(
+                                Icons.message_rounded,
+                                size: 40,
+                              ),
+                            ),
+                          ],
+                        ),
+                        child: Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        dailyAttendanceList[index].price,
+                                        style: storageItemMoney,
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      const Text(
+                                        'ETB',
+                                        style: storageItemCurrency,
+                                      ),
+                                    ],
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                  ),
+                                  margin: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    color: Colors.blueAccent,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  child: ListTile(
+                                    title: Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Text(
+                                        dailyAttendanceList[index].name,
+                                        style: storageItemName,
+                                      ),
+                                    ),
+                                    subtitle: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          dailyAttendanceList[index].title,
+                                          style: storageItemName,
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          DateFormat.yMMMEd().format(
+                                            DateTime.parse(
+                                                dailyAttendanceList[index]
+                                                    .date),
+                                          ),
+                                          style: storageItemDate,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(20),
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
-                            content: const Text(
-                                'Do you want to remove the Labour from the List?'),
+                          ),
+                          margin: EdgeInsets.only(bottom: _w / 20),
+                          height: _w / 4,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 40,
+                                spreadRadius: 10,
+                              ),
+                            ],
                           ),
                         ),
-                        icon: const Icon(
-                          Icons.delete_forever,
-                          size: 40,
-                        ),
                       ),
-                    ],
-                  ),
-                  startActionPane: ActionPane(
-                    motion: const ScrollMotion(),
-                    children: [
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      IconButton(
-                        color: Colors.green,
-                        onPressed: () => _callContact(
-                            context, dailyAttendanceList[index].phoneNumber),
-                        icon: const Icon(
-                          Icons.call,
-                          size: 40,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 30,
-                      ),
-                      IconButton(
-                        color: Colors.blue,
-                        onPressed: () => _smsContact(
-                            context, dailyAttendanceList[index].phoneNumber),
-                        icon: const Icon(
-                          Icons.message_rounded,
-                          size: 40,
-                        ),
-                      ),
-                    ],
-                  ),
-                  child: Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            child: Column(
-                              children: [
-                                Text(
-                                  dailyAttendanceList[index].price,
-                                  style: storageItemMoney,
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                const Text(
-                                  'ETB',
-                                  style: storageItemCurrency,
-                                ),
-                              ],
-                              mainAxisAlignment: MainAxisAlignment.center,
-                            ),
-                            margin: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              color: Colors.blueAccent,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: Container(
-                            child: ListTile(
-                              title: Padding(
-                                padding: const EdgeInsets.only(bottom: 8.0),
-                                child: Text(
-                                  dailyAttendanceList[index].name,
-                                  style: storageItemName,
-                                ),
-                              ),
-                              subtitle: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                    dailyAttendanceList[index].title,
-                                    style: storageItemName,
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    DateFormat.yMMMEd().format(
-                                      DateTime.parse(
-                                          dailyAttendanceList[index].date),
-                                    ),
-                                    style: storageItemDate,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
                     ),
-                    margin: EdgeInsets.only(bottom: _w / 20),
-                    height: _w / 4,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          blurRadius: 40,
-                          spreadRadius: 10,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                  );
+                },
               ),
-            );
-          },
-        ),
-      ),
+            )
+          : const Center(
+              child: Text(
+                'The List is Empty!',
+                style: storageTitle,
+              ),
+            ),
       floatingActionButton: Builder(
         builder: (context) => DropDownMenuButtonForDailyTodos(
           primaryColor: const Color.fromRGBO(3, 83, 151, 1),
+          iconsOne: const Icon(
+            Icons.add,
+            color: Colors.white,
+            size: 35,
+          ),
+          iconsTwo: const Image(
+            image: AssetImage('images/pdf.png'),
+            width: 40,
+          ),
+          iconsThree: const Image(
+            image: AssetImage('images/check-list.png'),
+            width: 50,
+          ),
+          iconsFour: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: 35,
+          ),
           button_11: () {
             showModalBottomSheet(
               context: context,
@@ -347,7 +379,7 @@ class _AttendanceListState extends State<AttendanceList> {
             );
           },
           button_44: () {
-            print('x');
+            Navigator.of(context).pop();
           },
         ),
       ),

@@ -8,9 +8,17 @@ class DropDownMenuButtonForDailyTodos extends StatelessWidget {
   final Function button_33;
   final Function button_44;
   final Color primaryColor;
+  final Widget iconsOne;
+  final Widget iconsTwo;
+  final Widget iconsThree;
+  final Widget iconsFour;
 
   DropDownMenuButtonForDailyTodos(
       {this.button_11,
+      this.iconsOne,
+      this.iconsTwo,
+      this.iconsThree,
+      this.iconsFour,
       this.button_22,
       this.button_33,
       this.button_44,
@@ -40,22 +48,15 @@ class DropDownMenuButtonForDailyTodos extends StatelessWidget {
       animationCurve: Curves.easeInOutCirc,
       onDisplayChange: (isOpen) {},
       children: <Widget>[
-        Container(
-          // padding: const EdgeInsets.fromLTRB(24.0, 100, 24, 24),
-          child: RawMaterialButton(
-            fillColor: Colors.green,
-            onPressed: () {
-              button_11();
-              fabKeyForDailyTodos.currentState.close();
-            },
-            shape: const CircleBorder(),
-            //padding: const EdgeInsets.fromLTRB(24.0, 100, 24, 24),
-            child: const Icon(
-              Icons.add,
-              color: Colors.white,
-              size: 35,
-            ),
-          ),
+        RawMaterialButton(
+          fillColor: Colors.green,
+          onPressed: () {
+            button_11();
+            fabKeyForDailyTodos.currentState.close();
+          },
+          shape: const CircleBorder(),
+          //padding: const EdgeInsets.fromLTRB(24.0, 100, 24, 24),
+          child: iconsOne,
         ),
         RawMaterialButton(
           onPressed: () {
@@ -65,10 +66,7 @@ class DropDownMenuButtonForDailyTodos extends StatelessWidget {
           shape: const CircleBorder(),
           //  padding: const EdgeInsets.fromLTRB(24.0, 50, 24, 24),
           padding: const EdgeInsets.all(24.0),
-          child: const Image(
-            image: AssetImage('images/pdf.png'),
-            width: 40,
-          ),
+          child: iconsTwo,
         ),
         RawMaterialButton(
           onPressed: () {
@@ -77,10 +75,7 @@ class DropDownMenuButtonForDailyTodos extends StatelessWidget {
           },
           shape: const CircleBorder(),
           //padding: const EdgeInsets.all(24.0),
-          child: const Image(
-            image: AssetImage('images/check-list.png'),
-            width: 50,
-          ),
+          child: iconsThree,
         ),
         RawMaterialButton(
           onPressed: () {
@@ -89,11 +84,7 @@ class DropDownMenuButtonForDailyTodos extends StatelessWidget {
           },
           shape: const CircleBorder(),
           padding: const EdgeInsets.all(24.0),
-          child: const Icon(
-            Icons.arrow_right_alt_outlined,
-            color: Colors.white,
-            size: 35,
-          ),
+          child: iconsFour,
         )
       ],
     );
