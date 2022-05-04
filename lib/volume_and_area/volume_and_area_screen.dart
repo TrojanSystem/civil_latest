@@ -168,7 +168,10 @@ class _VolumeAndAreaScreenState extends State<VolumeAndAreaScreen> {
                                 image: AssetImage(
                                     'images/${geometricShape[index]['img']}'),
                               ),
-                              Text(geometricShape[index]['shape'])
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text(geometricShape[index]['shape']),
+                              )
                             ],
                           ),
                         ),

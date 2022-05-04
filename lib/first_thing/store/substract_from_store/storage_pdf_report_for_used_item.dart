@@ -24,23 +24,23 @@ class StoragePDFReportForUsedItems {
 class FileHandlerForStorageForUsedItems extends ChangeNotifier {
   //final helper = DatabaseHelper.instance;
 
-  List<StoragePDFReportForUsedItems> fileList = [];
+  List<StoragePDFReportForUsedItems> fileListForUsedItems = [];
 
   // void initializeOptions(List<dynamic> fileList) {
   //   this.fileList = fileList;
   //   notifyListeners();
   // }
   void addLabour(StoragePDFReportForUsedItems model) {
-    fileList.insert(0, model);
+    fileListForUsedItems.insert(0, model);
     notifyListeners();
   }
 
   void removeLabour(int id) {
-    fileList.removeAt(id);
+    fileListForUsedItems.removeAt(id);
     notifyListeners();
   }
 
-  Future<void> createTable() async {
+  Future<void> createTableForUsed() async {
     // Create a new PDF document.
     final PdfDocument document = PdfDocument();
 // Add a new page to the document.
@@ -52,7 +52,7 @@ class FileHandlerForStorageForUsedItems extends ChangeNotifier {
 // Add a grid header row.
     final PdfGridRow headerRow = grid.headers.add(1)[0];
     headerRow.cells[0].value = 'ID';
-    headerRow.cells[1].value = 'Storekeeper Name';
+    headerRow.cells[1].value = 'Authorized Name';
     headerRow.cells[2].value = 'Item Name';
     headerRow.cells[3].value = 'Item Quantity';
 
@@ -63,14 +63,14 @@ class FileHandlerForStorageForUsedItems extends ChangeNotifier {
         PdfStandardFont(PdfFontFamily.helvetica, 20, style: PdfFontStyle.bold);
 // Add rows to the grid.
 
-    for (int x = 0; x < fileList.length; x++) {
+    for (int x = 0; x < fileListForUsedItems.length; x++) {
       PdfGridRow row = grid.rows.add();
-      row.cells[0].value = fileList[x].id;
-      row.cells[1].value = fileList[x].storekeeper;
-      row.cells[2].value = fileList[x].name;
-      row.cells[3].value = fileList[x].usedQuantity;
+      row.cells[0].value = fileListForUsedItems[x].id;
+      row.cells[1].value = fileListForUsedItems[x].storekeeper;
+      row.cells[2].value = fileListForUsedItems[x].name;
+      row.cells[3].value = fileListForUsedItems[x].usedQuantity;
 
-      row.cells[4].value = fileList[x].date;
+      row.cells[4].value = fileListForUsedItems[x].date;
     }
 
     grid.style.cellPadding = PdfPaddings(left: 5, top: 5);
@@ -81,7 +81,7 @@ class FileHandlerForStorageForUsedItems extends ChangeNotifier {
 // Save the document.
     List<int> bytes = document.save();
     document.dispose();
-    saveAndLaunch(bytes, 'ShopStore Report.pdf');
+    saveAndLaunch(bytes, 'StoreOut Report.pdf');
     // File('PDFTable.pdf').writeAsBytes(document.save());
 // Dispose the document.
     document.dispose();

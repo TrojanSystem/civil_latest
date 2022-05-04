@@ -37,13 +37,7 @@ class _LengthConverterState extends State<LengthConverter> {
                   child: Form(
                     key: formKeyLength,
                     child: Container(
-                      //  padding: const EdgeInsets.fromLTRB(18, 28, 18, 8),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 2,
-                          color: Colors.black,
-                        ),
-                      ),
+
                       child: TextFormField(
                         initialValue: '0',
                         validator: (value) {

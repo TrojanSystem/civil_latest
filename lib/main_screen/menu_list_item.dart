@@ -87,7 +87,7 @@ class _MyCustomWidgetState extends State<MyCustomWidget> {
         navigate: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (_) => ConverterScreen(),
+              builder: (_) => const ConverterScreen(),
             ),
           );
         },

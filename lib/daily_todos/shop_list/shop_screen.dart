@@ -57,6 +57,7 @@ class _ShopListState extends State<ShopList> {
 
     final newLabours = dailyShop
         .map((e) => ShopModel(
+              dailySum: dailySumUp.toStringAsFixed(2),
               price: e.price,
               name: e.name,
               quantity: e.quantity,
@@ -117,7 +118,7 @@ class _ShopListState extends State<ShopList> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Daily Income: $dailySumUp',
+                            'Daily Expense: $dailySumUp',
                             style: dailyIncomeStyle,
                           ),
                           Text(
@@ -155,7 +156,7 @@ class _ShopListState extends State<ShopList> {
             image: AssetImage('images/check-list.png'),
             width: 50,
           ),
-          iconsFour: const Icon(Icons.arrow_back_ios),
+          iconsFour: const Icon(Icons.arrow_back),
           button_11: () {
             showModalBottomSheet(
               context: context,
@@ -164,7 +165,8 @@ class _ShopListState extends State<ShopList> {
           },
           button_22: () {
             setState(() {
-              Provider.of<ShopHandler>(context, listen: false).createTable();
+              Provider.of<ShopHandler>(context, listen: false)
+                  .createTableMonthly();
             });
           },
           button_33: () {

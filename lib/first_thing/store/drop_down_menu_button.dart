@@ -7,14 +7,18 @@ class DropDownMenuButton extends StatelessWidget {
   final Function button_2;
   final Function button_3;
   final Function button_4;
+  final Function button_5;
   final Widget iconsOne;
   final Widget iconsTwo;
   final Widget iconsThree;
   final Widget iconsFour;
+  final Widget iconsFive;
+
   final Color primaryColor;
 
   DropDownMenuButton(
       {this.button_1,
+      this.iconsFive,
       this.iconsFour,
       this.iconsThree,
       this.iconsOne,
@@ -22,6 +26,7 @@ class DropDownMenuButton extends StatelessWidget {
       this.button_2,
       this.button_3,
       this.button_4,
+      this.button_5,
       this.primaryColor});
 
   Widget build(BuildContext context) {
@@ -57,7 +62,6 @@ class DropDownMenuButton extends StatelessWidget {
               fabKey1.currentState.close();
             },
             shape: const CircleBorder(),
-            //padding: const EdgeInsets.fromLTRB(24.0, 100, 24, 24),
             child: iconsOne,
           ),
         ),
@@ -68,7 +72,7 @@ class DropDownMenuButton extends StatelessWidget {
           },
           shape: const CircleBorder(),
           //  padding: const EdgeInsets.fromLTRB(24.0, 50, 24, 24),
-          padding: const EdgeInsets.all(24.0),
+          //   padding: const EdgeInsets.only(top: 14.0, bottom: 14),
           child: iconsTwo,
         ),
         RawMaterialButton(
@@ -77,7 +81,7 @@ class DropDownMenuButton extends StatelessWidget {
             fabKey1.currentState.close();
           },
           shape: const CircleBorder(),
-          //padding: const EdgeInsets.all(24.0),
+          //  padding: const EdgeInsets.only(top: 14.0, bottom: 14),
           child: iconsThree,
         ),
         RawMaterialButton(
@@ -86,7 +90,7 @@ class DropDownMenuButton extends StatelessWidget {
             fabKey1.currentState.close();
           },
           shape: const CircleBorder(),
-          padding: const EdgeInsets.all(24.0),
+          //  padding: const EdgeInsets.only(top: 14.0, bottom: 14),
           child: iconsFour,
         )
       ],

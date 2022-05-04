@@ -44,7 +44,7 @@ class _TakeFromStorageState extends State<TakeFromStorage> {
         toolbarHeight: 80,
         centerTitle: true,
         title: const Text(
-          'Storage',
+          'Store - out',
           style: TextStyle(
             fontSize: 22,
             color: Colors.black,
@@ -63,7 +63,7 @@ class _TakeFromStorageState extends State<TakeFromStorage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'Storekeeper Name',
+                    'Authorised Personnel',
                     style: TextStyle(
                       fontWeight: FontWeight.w900,
                       fontSize: 18,
@@ -75,7 +75,7 @@ class _TakeFromStorageState extends State<TakeFromStorage> {
                   TextFormField(
                     validator: (value) {
                       if (value.isEmpty) {
-                        return 'Storekeeper Name can\'t be empty';
+                        return 'Authorised Personnel Name can\'t be empty';
                       } else {
                         return null;
                       }
@@ -84,7 +84,7 @@ class _TakeFromStorageState extends State<TakeFromStorage> {
                       storeKeeper = value;
                     },
                     decoration: InputDecoration(
-                      hintText: 'Enter the Storekeeper Name',
+                      hintText: 'Enter the Authorised Personnel',
                       filled: true,
                       fillColor: Colors.grey[200],
                       enabledBorder: OutlineInputBorder(

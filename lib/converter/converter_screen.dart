@@ -35,8 +35,8 @@ class _ConverterScreenState extends State<ConverterScreen> {
           bottom: TabBar(
             indicator: BoxDecoration(
               color: Colors.blue[300].withOpacity(0.4),
-              border: const Border(
-                bottom: BorderSide(color: Colors.black, width: 3),
+              border:  Border(
+                bottom: BorderSide(color: Colors.white, width: 3),
               ),
             ),
             tabs: const [

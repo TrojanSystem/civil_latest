@@ -1,8 +1,9 @@
 import 'dart:io';
 import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 class TodosModel {
@@ -28,10 +29,8 @@ class TodoHandler extends ChangeNotifier {
   //   notifyListeners();
   // }
   void addLabour(TodosModel model) {
-    print('first length ${fileList.length}');
     fileList.insert(0, model);
     notifyListeners();
-    print('second length ${fileList.length}');
   }
 
   void removeLabour(int id) {
@@ -39,7 +38,7 @@ class TodoHandler extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> createTable() async {
+  Future<void> createTableTaskList() async {
     // Create a new PDF document.
     final PdfDocument document = PdfDocument();
 // Add a new page to the document.
@@ -64,7 +63,6 @@ class TodoHandler extends ChangeNotifier {
       // row.cells[0].value = fileList[x].id;
       row.cells[0].value = fileList[x].todo;
       row.cells[1].value = fileList[x].date;
-
     }
 
 // Add next row.

@@ -4,6 +4,7 @@ import 'package:example/first_thing/store/add_to_store/storage_pdf_report.dart';
 import 'package:example/first_thing/store/monthly_analaysis_for_storage.dart';
 import 'package:example/first_thing/store/substract_from_store/shop_model_data_for_used_items.dart';
 import 'package:example/first_thing/store/substract_from_store/storage_list_item_for_used_item.dart';
+import 'package:example/first_thing/store/substract_from_store/storage_pdf_report_for_used_item.dart';
 import 'package:example/first_thing/store/substract_from_store/take_from_store.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,8 +21,11 @@ class StorageScreen extends StatefulWidget {
   State<StorageScreen> createState() => _StorageScreenState();
 }
 
+int currentTab = 0;
+
 class _StorageScreenState extends State<StorageScreen> {
   int selectedDayOfMonth = DateTime.now().day;
+
   @override
   Widget build(BuildContext context) {
     final dailyStoreAttendance =
@@ -61,8 +65,13 @@ class _StorageScreenState extends State<StorageScreen> {
         builder: (context, data, child) => Scaffold(
           //   backgroundColor: const Color.fromRGBO(3, 83, 151, 1),
           appBar: AppBar(
-            bottom: const TabBar(
-              tabs: [
+            bottom: TabBar(
+              onTap: (currentIndex) {
+                setState(() {
+                  currentTab = currentIndex;
+                });
+              },
+              tabs: const [
                 Tab(
                   child: Text(
                     'Store-In',
@@ -163,7 +172,7 @@ class _StorageScreenState extends State<StorageScreen> {
                           ),
                         )
                       : StorageListItemForUsedItem(
-                          usedList: resultForUsed,
+                          usedList: resultForUsedDaily,
                         ),
             ],
           ),
@@ -196,8 +205,14 @@ class _StorageScreenState extends State<StorageScreen> {
               },
               button_2: () {
                 setState(() {
-                  Provider.of<FileHandlerForStorage>(context, listen: false)
-                      .createTable();
+                  if (currentTab == 0) {
+                    Provider.of<FileHandlerForStorage>(context, listen: false)
+                        .createTableForStoredItem();
+                  } else {
+                    Provider.of<FileHandlerForStorageForUsedItems>(context,
+                            listen: false)
+                        .createTableForUsed();
+                  }
                 });
               },
               button_3: () {

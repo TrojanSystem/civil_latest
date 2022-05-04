@@ -20,7 +20,7 @@ class StorageListItemForStoredItem extends StatelessWidget {
     var filterNameForUsedItems =
         usedList.map((e) => e.itemNames).toSet().toList();
 
-    final List<StoragePDFReport> newLabour = [];
+    final List<StoragePDFReport> newStoredReport = [];
 
     return AnimationLimiter(
       child: ListView.builder(
@@ -56,7 +56,7 @@ class StorageListItemForStoredItem extends StatelessWidget {
           }
           double remainingQuantity = sumQuantity - sumQuantityForUsedItems;
 
-          newLabour.add(
+          newStoredReport.add(
             StoragePDFReport(
               id: storageList[index].id.toString(),
               storekeeper: storageList[index].storeKeeperName,
@@ -68,8 +68,8 @@ class StorageListItemForStoredItem extends StatelessWidget {
             ),
           );
 
-          Provider.of<FileHandlerForStorage>(context, listen: false).fileList =
-              newLabour;
+          Provider.of<FileHandlerForStorage>(context).fileListForStoredItems =
+              newStoredReport;
           return GestureDetector(
             onTap: () {},
             child: AnimationConfiguration.staggeredList(

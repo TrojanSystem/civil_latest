@@ -12,8 +12,10 @@ class ShopModel {
   String quantity;
   String date;
   String price;
+  String dailySum;
 
   ShopModel({
+    this.dailySum,
     this.total,
     this.id,
     this.date,
@@ -51,14 +53,15 @@ class ShopHandler extends ChangeNotifier {
 // Create a PDF grid class to add tables.
     final PdfGrid grid = PdfGrid();
 // Specify the grid column count.
-    grid.columns.add(count: 4);
+    grid.columns.add(count: 5);
 // Add a grid header row.
     final PdfGridRow headerRow = grid.headers.add(1)[0];
     // headerRow.cells[0].value = 'Labour ID';
     headerRow.cells[0].value = 'Item Name';
     headerRow.cells[1].value = 'Item Quantity';
     headerRow.cells[2].value = 'Item Unit Price';
-    headerRow.cells[3].value = 'Shopping Date';
+    headerRow.cells[3].value = 'Daily Expense';
+    headerRow.cells[4].value = 'Shopping Date';
 // Set header font.
     headerRow.style.font =
         PdfStandardFont(PdfFontFamily.helvetica, 20, style: PdfFontStyle.bold);
@@ -70,8 +73,8 @@ class ShopHandler extends ChangeNotifier {
       row.cells[0].value = fileList[x].name;
       row.cells[1].value = fileList[x].quantity;
       row.cells[2].value = fileList[x].price;
-
-      row.cells[3].value = fileList[x].date;
+      row.cells[3].value = fileList[x].dailySum;
+      row.cells[4].value = fileList[x].date;
     }
 
     grid.style.cellPadding = PdfPaddings(left: 5, top: 5);
@@ -82,12 +85,12 @@ class ShopHandler extends ChangeNotifier {
 // Save the document.
     List<int> bytes = document.save();
     document.dispose();
-    saveAndLaunch(bytes, 'Shopping List Sheet.pdf');
+    saveAndLaunch(bytes, 'Shopping DailyList.pdf');
 
     document.dispose();
   }
 
-  Future<void> createTable() async {
+  Future<void> createTableDaily() async {
     // Create a new PDF document.
     final PdfDocument document = PdfDocument();
 // Add a new page to the document.
@@ -95,14 +98,15 @@ class ShopHandler extends ChangeNotifier {
 // Create a PDF grid class to add tables.
     final PdfGrid grid = PdfGrid();
 // Specify the grid column count.
-    grid.columns.add(count: 4);
+    grid.columns.add(count: 5);
 // Add a grid header row.
     final PdfGridRow headerRow = grid.headers.add(1)[0];
     // headerRow.cells[0].value = 'Labour ID';
     headerRow.cells[0].value = 'Item Name';
     headerRow.cells[1].value = 'Item Quantity';
     headerRow.cells[2].value = 'Item Unit Price';
-    headerRow.cells[3].value = 'Shopping Date';
+    headerRow.cells[3].value = 'Total Expense';
+    headerRow.cells[4].value = 'Shopping Date';
 // Set header font.
     headerRow.style.font =
         PdfStandardFont(PdfFontFamily.helvetica, 20, style: PdfFontStyle.bold);
@@ -114,8 +118,8 @@ class ShopHandler extends ChangeNotifier {
       row.cells[0].value = fileList[x].name;
       row.cells[1].value = fileList[x].quantity;
       row.cells[2].value = fileList[x].price;
-
-      row.cells[3].value = fileList[x].date;
+      row.cells[3].value = fileList[x].dailySum;
+      row.cells[4].value = fileList[x].date;
     }
 
     grid.style.cellPadding = PdfPaddings(left: 5, top: 5);
@@ -126,7 +130,7 @@ class ShopHandler extends ChangeNotifier {
 // Save the document.
     List<int> bytes = document.save();
     document.dispose();
-    saveAndLaunch(bytes, 'Shopping List Sheet.pdf');
+    saveAndLaunch(bytes, 'Shopping MonthlyList.pdf');
 
     document.dispose();
   }

@@ -353,7 +353,7 @@ class _AttendanceListState extends State<AttendanceList> {
             width: 50,
           ),
           iconsFour: const Icon(
-            Icons.arrow_back_ios,
+            Icons.arrow_back,
             color: Colors.white,
             size: 35,
           ),

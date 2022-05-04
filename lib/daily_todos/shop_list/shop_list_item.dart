@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants.dart';
-import 'database_helper/shop_database_helper.dart';
+import 'daily_shop_data.dart';
 import 'files.dart';
 
 class ShopListItem extends StatelessWidget {
@@ -67,9 +67,10 @@ class ShopListItem extends StatelessWidget {
                                 ),
                                 FlatButton(
                                   onPressed: () {
-                                    DatabaseHelperForShop.getInstance().delete(
-                                      shopList[index].id,
-                                    );
+                                    Provider.of<DailyShopData>(context,
+                                            listen: false)
+                                        .deleteDailyShopList(
+                                            shopList[index].id);
                                     Navigator.of(ctx).pop(true);
                                   },
                                   child: const Text('Yes'),

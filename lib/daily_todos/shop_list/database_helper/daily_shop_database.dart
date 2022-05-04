@@ -41,7 +41,7 @@ class DatabaseForDailyShop {
       'dailyShopTable',
       item.toMap(),
       where: 'id = ?',
-      whereArgs: [item.name],
+      whereArgs: [item.id],
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
     return rows > 0;

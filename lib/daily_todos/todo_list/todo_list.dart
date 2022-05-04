@@ -196,7 +196,7 @@ class _TodoListState extends State<TodoList> {
             image: AssetImage('images/pdf.png'),
             width: 40,
           ),
-          iconsThree: const Icon(Icons.arrow_back_ios),
+          iconsThree: const Icon(Icons.arrow_back),
           button_11: () {
             showModalBottomSheet(
               context: context,
@@ -205,7 +205,8 @@ class _TodoListState extends State<TodoList> {
           },
           button_22: () {
             setState(() {
-              Provider.of<TodoHandler>(context, listen: false).createTable();
+              Provider.of<TodoHandler>(context, listen: false)
+                  .createTableTaskList();
             });
           },
           button_33: () {

@@ -24,23 +24,23 @@ class StoragePDFReport {
 class FileHandlerForStorage extends ChangeNotifier {
   //final helper = DatabaseHelper.instance;
 
-  List<StoragePDFReport> fileList = [];
+  List<StoragePDFReport> fileListForStoredItems = [];
 
   // void initializeOptions(List<dynamic> fileList) {
   //   this.fileList = fileList;
   //   notifyListeners();
   // }
   void addLabour(StoragePDFReport model) {
-    fileList.insert(0, model);
+    fileListForStoredItems.insert(0, model);
     notifyListeners();
   }
 
   void removeLabour(int id) {
-    fileList.removeAt(id);
+    fileListForStoredItems.removeAt(id);
     notifyListeners();
   }
 
-  Future<void> createTable() async {
+  Future<void> createTableForStoredItem() async {
     // Create a new PDF document.
     final PdfDocument document = PdfDocument();
 // Add a new page to the document.
@@ -63,14 +63,14 @@ class FileHandlerForStorage extends ChangeNotifier {
         PdfStandardFont(PdfFontFamily.helvetica, 20, style: PdfFontStyle.bold);
 // Add rows to the grid.
 
-    for (int x = 0; x < fileList.length; x++) {
+    for (int x = 0; x < fileListForStoredItems.length; x++) {
       PdfGridRow row = grid.rows.add();
-      row.cells[0].value = fileList[x].id;
-      row.cells[1].value = fileList[x].storekeeper;
-      row.cells[2].value = fileList[x].name;
-      row.cells[3].value = fileList[x].quantity;
+      row.cells[0].value = fileListForStoredItems[x].id;
+      row.cells[1].value = fileListForStoredItems[x].storekeeper;
+      row.cells[2].value = fileListForStoredItems[x].name;
+      row.cells[3].value = fileListForStoredItems[x].quantity;
 
-      row.cells[4].value = fileList[x].date;
+      row.cells[4].value = fileListForStoredItems[x].date;
     }
 
     grid.style.cellPadding = PdfPaddings(left: 5, top: 5);

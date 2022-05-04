@@ -18,7 +18,7 @@ class StorageListItemForUsedItem extends StatelessWidget {
   Widget build(BuildContext context) {
     double _w = MediaQuery.of(context).size.width;
 
-    final List<StoragePDFReportForUsedItems> newLabour = [];
+    final List<StoragePDFReportForUsedItems> newPdfReportForUsedItems = [];
 
     return AnimationLimiter(
       child: ListView.builder(
@@ -28,7 +28,7 @@ class StorageListItemForUsedItem extends StatelessWidget {
         ),
         itemCount: usedList.length,
         itemBuilder: (BuildContext context, int index) {
-          newLabour.add(
+          newPdfReportForUsedItems.add(
             StoragePDFReportForUsedItems(
               id: usedList[index].id.toString(),
               storekeeper: usedList[index].storeKeeperName,
@@ -40,8 +40,8 @@ class StorageListItemForUsedItem extends StatelessWidget {
             ),
           );
 
-          Provider.of<FileHandlerForStorageForUsedItems>(context, listen: false)
-              .fileList = newLabour;
+          Provider.of<FileHandlerForStorageForUsedItems>(context)
+              .fileListForUsedItems = newPdfReportForUsedItems;
           return GestureDetector(
             onTap: () {},
             child: AnimationConfiguration.staggeredList(

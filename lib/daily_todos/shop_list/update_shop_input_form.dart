@@ -150,20 +150,23 @@ class _ShopUpdateFormState extends State<ShopUpdateForm> {
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-                    int total = Provider.of<ShopHandler>(context, listen: false)
-                        .totalPrice(
-                            double.parse(quantity), double.parse(price));
-                    Provider.of<DailyShopData>(context, listen: false)
-                        .updateDailyShopList(
-                      Shop(
-                        id: widget.index,
-                        name: name,
-                        date: date,
-                        quantity: quantity,
-                        price: price,
-                        total: total,
-                      ),
-                    );
+                    setState(() {
+                      int total =
+                          Provider.of<ShopHandler>(context, listen: false)
+                              .totalPrice(
+                                  double.parse(quantity), double.parse(price));
+                      Provider.of<DailyShopData>(context, listen: false)
+                          .updateDailyShopList(
+                        Shop(
+                          id: widget.index,
+                          name: name,
+                          date: date,
+                          quantity: quantity,
+                          price: price,
+                          total: total,
+                        ),
+                      );
+                    });
 
                     Navigator.pop(context);
                   }

@@ -26,16 +26,21 @@ class _MonthlyAnalaysisState extends State<MonthlyAnalaysis> {
   Widget build(BuildContext context) {
     double _w = MediaQuery.of(context).size.width;
 
-    //final items = Provider.of<DailyShopData>(context).dailyShopList;
-
     final monthSelected =
         Provider.of<ShopModelDataForStore>(context).monthOfAYear;
 
     final dailyShopFilteredForMonth = widget.dailyShopFilteredForYear
         .where((element) => DateTime.parse(element.date).month == selectedMonth)
         .toList();
+
+    final totalPrice = dailyShopFilteredForMonth.map((e) => e.total).toList();
+    var sumTotalPrice = 0.0;
+    for (int x = 0; x < dailyShopFilteredForMonth.length; x++) {
+      sumTotalPrice += totalPrice[x];
+    }
     final newLabour = dailyShopFilteredForMonth
         .map((e) => ShopModel(
+              dailySum: sumTotalPrice.toStringAsFixed(2),
               price: e.price,
               name: e.name,
               quantity: e.quantity,
@@ -251,7 +256,7 @@ class _MonthlyAnalaysisState extends State<MonthlyAnalaysis> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            Provider.of<ShopHandler>(context, listen: false).createTable();
+            Provider.of<ShopHandler>(context, listen: false).createTableDaily();
           });
         },
         child: const Icon(Icons.save),
